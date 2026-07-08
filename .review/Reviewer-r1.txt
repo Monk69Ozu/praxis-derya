@@ -1,0 +1,20 @@
+MAKRO-REVIEWER RUNDE 1 — Ergebnis (gekürzt)
+
+VISION-CHECK: Stil/Palette/Schriften/Effekt-Budget alle umgesetzt.
+
+ORIGINAL-DIFF:
+- Home Hero-H1 zu groß (lg:text-7xl → lg:text-6xl, 2-zeilige Brechung wie Original)
+- Hero-Badge: Initialen statt Foto-Avatare
+- About: Teamfotos rendern in Fullpage-Screenshots leer (SVG mit base64-Pattern) → als Bitmap extrahieren
+- Contact Map leer im Screenshot = Capture-Artefakt (Original zeigt dasselbe), iframe korrekt
+
+WEGLASSEN:
+- DeryaCtaBanner auf /services entfernen (nicht im Original)
+
+TECHNISCHE BUGS:
+- Teamfotos-SVG-Problem (siehe oben)
+- Mobile-Hero: weiße Headline über weißem Kittel schwer lesbar → object-position mobil + blauer Scrim links
+
+HINWEISE (kein Fix): "Frau Mustermann"/"Musterstr. xy" sind Original-Platzhalter — Kundin muss echte Daten liefern.
+
+GUT: Farbtokens, Pill-Navbar, Button-A11y, Marquee-A11y, reduced-motion-Guards, Services-Seite nahezu deckungsgleich.

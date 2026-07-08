@@ -1,0 +1,10 @@
+PROGRAMMER RUNDE 1 — Umsetzung (durch Hauptsession)
+
+1. Teamfotos-Bug: base64-Fotos aus den 4 Framer-SVGs extrahiert → derya-team-*.png (echte Bitmaps),
+   about/page.tsx auf .png umgestellt, unoptimized entfernt, object-contain object-bottom + Verlaufs-Hintergrund.
+2. Hero-Badge: Initialen-Kreise durch echte Avatar-Fotos ersetzt (derya-avatar-1/2.png aus Original + Ärztin-Foto).
+3. Hero-H1: lg:text-7xl entfernt → max sm:text-6xl (2-zeilige Brechung wie Original).
+4. Mobile-Hero-Lesbarkeit: blauer Scrim-Gradient (from-derya-hero-from/90 → transparent) nur < lg.
+5. WEGLASSEN: DeryaCtaBanner von /services entfernt (nicht im Original).
+
+Nicht umgesetzt: keine. Hinweise (Mustermann-Platzhalter, Musterstraße) bleiben — sind Original-Inhalt, Kundin liefert echte Daten.
