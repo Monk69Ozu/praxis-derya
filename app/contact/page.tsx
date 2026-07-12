@@ -5,6 +5,7 @@ import AnimatedHeading from "@/components/AnimatedHeading"
 import DeryaButton from "@/components/DeryaButton"
 import DeryaKontaktFormular from "@/components/DeryaKontaktFormular"
 import DeryaMapsKarte from "@/components/DeryaMapsKarte"
+import Derya3dElement from "@/components/Derya3dElement"
 import { praxis } from "@/lib/derya-daten"
 
 export const metadata: Metadata = {
@@ -40,9 +41,9 @@ export default function Contact() {
             <h3 className="text-[20px] font-semibold text-derya-ink">Ihre Arztsprechstunde online</h3>
             <p className="text-[14.5px] leading-relaxed">
               Vereinbaren Sie einen Termin für die Onlinesprechstunde – wir beraten Sie per Video, sicher und
-              persönlich.
+              persönlich. Die Terminbuchung läuft bequem über Doctolib.
             </p>
-            <DeryaButton href="/contact#kontaktformular">Termin für Onlinesprechstunde</DeryaButton>
+            <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
           </div>
         </AnimatedSection>
       </section>
@@ -77,9 +78,12 @@ export default function Contact() {
       {/* Karte + Anfahrt */}
       <section id="anfahrt" className="bg-white pb-20">
         <div className="mx-auto max-w-6xl px-6">
-          <AnimatedSection className="overflow-hidden rounded-2xl shadow-[0_6px_24px_rgba(22,23,32,0.06)]">
-            <DeryaMapsKarte src={praxis.mapsEmbed} />
-          </AnimatedSection>
+          <div className="relative">
+            <AnimatedSection className="overflow-hidden rounded-2xl shadow-[0_6px_24px_rgba(22,23,32,0.06)]">
+              <DeryaMapsKarte src={praxis.mapsEmbed} />
+            </AnimatedSection>
+            <Derya3dElement bild="/images/3d/derya-3d-pin.png" breite={130} className="absolute -top-12 right-10 z-10 hidden lg:block" />
+          </div>
           <AnimatedSection delay={0.1} className="mt-5 rounded-xl bg-derya-card px-7 py-6">
             <h2 className="text-[20px] font-semibold text-derya-ink">{praxis.adresse}</h2>
             <p className="mt-2 text-[14.5px] leading-relaxed">
@@ -96,7 +100,7 @@ export default function Contact() {
               <h3 className="text-[16px] font-semibold text-derya-ink">Öffnungszeiten</h3>
               <p className="mt-1 text-[14.5px]">
                 {praxis.oeffnungszeiten.map((z) => (
-                  <span key={z} className="block">{z}</span>
+                  <span key={z.tage} className="block">{z.tage}: {z.zeiten}</span>
                 ))}
               </p>
             </AnimatedSection>

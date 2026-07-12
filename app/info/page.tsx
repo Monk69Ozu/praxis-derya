@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
 import AnimatedSection from "@/components/AnimatedSection"
 import DeryaPageHero from "@/components/DeryaPageHero"
+import DeryaButton from "@/components/DeryaButton"
+import Derya3dElement from "@/components/Derya3dElement"
+import { praxis } from "@/lib/derya-daten"
 
 export const metadata: Metadata = {
   title: "Patienteninfo – Praxis Derya, Köln",
   description:
-    "Sprechstundenzeiten, ärztlicher Notdienst (116 117), wichtige Dokumente zum Download und nützliche Links für Patienten der Praxis Derya in Köln.",
+    "Sprechstundenzeiten, ärztlicher Notdienst (116 117), Patientenformulare über Doctolib und nützliche Links für Patienten der Praxis Derya in Köln.",
 }
 
 const links = [
@@ -17,14 +20,7 @@ const links = [
   { label: "Centrum Reisemedizin", href: "https://www.crm.de" },
   { label: "Infomaterialien zu diversen gesundheitlichen Themen", href: "https://www.patienten-information.de" },
   { label: "Die Notdienstapotheke in Ihrer Nähe", href: "https://www.aponet.de/apotheke/notdienstsuche" },
-  { label: "Notdienstpraxen der niedergelassenen Ärzte im Bereich Köln", href: "https://www.kvno.de/patienten/notdienst" },
-]
-
-/* PDFs in public/downloads/ ablegen — Dateinamen müssen exakt passen */
-const downloads = [
-  { label: "Patientenaufnahme- und Anamnesebogen", href: "/downloads/patientenaufnahme-anamnesebogen.pdf" },
-  { label: "Patienteneinwilligung Behandlungsverhältnis", href: "/downloads/patienteneinwilligung-behandlungsverhaeltnis.pdf" },
-  { label: "Einwilligung zur Abrechnung der ärztlichen Leistungen für Privatpatienten", href: "/downloads/einwilligung-abrechnung-privatpatienten.pdf" },
+  { label: "Notdienstpraxen in Ihrer Nähe finden (116117)", href: "https://www.116117.de/de/notdienst.php" },
 ]
 
 function InfoCard({ children }: { children: React.ReactNode }) {
@@ -42,21 +38,28 @@ export default function Info() {
 
       {/* Sprechstunde */}
       <section id="sprechstunde" className="bg-white py-20">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="relative mx-auto max-w-6xl px-6">
+          <Derya3dElement bild="/images/3d/derya-3d-herz.png" breite={120} className="absolute bottom-4 right-12 z-10 hidden lg:block" delay={0.8} />
           <AnimatedSection className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <h2 className="text-4xl sm:text-[40px]">Sprechstunde</h2>
             <p className="text-[13.5px] text-derya-dim">Individuelle Beratung &amp; Behandlung für Ihre Gesundheit</p>
           </AnimatedSection>
           <AnimatedSection delay={0.1} className="mt-10 space-y-4">
             <InfoCard>
-              Wir bieten Offene-, Termin- und Online-Sprechstunden an. Ihren Gesprächstermin vereinbaren Sie am
-              einfachsten telefonisch unter 0221 31 35 33 oder über unser Kontaktformular.
+              Wir bieten Offene-, Termin- und Online-Sprechstunden an. Ihren Termin buchen Sie am einfachsten online
+              über{" "}
+              <a href={praxis.doctolib} target="_blank" rel="noopener noreferrer" className="font-semibold text-derya-primary hover:underline">
+                Doctolib
+              </a>{" "}
+              oder telefonisch unter 0221 31 35 33.
             </InfoCard>
             <InfoCard>Es ist zu erwähnen, dass die offene Sprechstunde eventuell mit längeren Wartezeiten verbunden ist.</InfoCard>
             <InfoCard>
               <strong>Wir haben folgende Sprechstundenzeiten für unsere Patienten:</strong>
-              <span className="mt-2 block">Mo. – Fr.: 9:00 – 12:00 Uhr</span>
-              <span className="block">Mo., Di., Do.: 15:00 – 18:00 Uhr und nach Vereinbarung</span>
+              {praxis.oeffnungszeiten.map((z) => (
+                <span key={z.tage} className="mt-2 block">{z.tage}: {z.zeiten}</span>
+              ))}
+              <span className="block">und nach Vereinbarung</span>
             </InfoCard>
           </AnimatedSection>
         </div>
@@ -108,29 +111,28 @@ export default function Info() {
         </div>
       </section>
 
-      {/* Downloads */}
-      <section id="download" className="bg-derya-bg-soft py-20">
+      {/* Patientenformulare — werden über Doctolib bereitgestellt */}
+      <section id="formulare" className="bg-derya-bg-soft py-20">
         <div className="mx-auto max-w-4xl px-6">
           <AnimatedSection className="text-center">
-            <h2 className="text-4xl sm:text-[40px]">Wichtige Dokumente für Patienten (PDF)</h2>
+            <h2 className="text-4xl sm:text-[40px]">Patientenformulare</h2>
           </AnimatedSection>
-          <AnimatedSection delay={0.1} className="mt-10 space-y-4">
-            {downloads.map((d) => (
-              <div
-                key={d.label}
-                className="rounded-xl bg-white px-7 py-8 text-center shadow-[0_4px_18px_rgba(22,23,32,0.04)]"
-              >
-                <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-derya-bg-soft text-derya-primary" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z" /><path d="M14 2v6h6" />
-                  </svg>
-                </span>
-                <h3 className="mt-3 text-[16px] font-semibold text-derya-ink">{d.label}</h3>
+          <AnimatedSection delay={0.1} className="mt-10">
+            <div className="rounded-xl bg-white px-7 py-10 text-center shadow-[0_4px_18px_rgba(22,23,32,0.04)]">
+              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-derya-bg-soft text-derya-primary" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z" /><path d="M14 2v6h6" /><path d="m9 15 2 2 4-4" />
+                </svg>
+              </span>
+              <h3 className="mt-4 text-[19px] font-semibold text-derya-ink">Bequem digital über Doctolib</h3>
+              <p className="mx-auto mt-3 max-w-xl text-[14.5px] leading-relaxed">
+                Patientenaufnahme, Anamnese- und Einwilligungsbögen erhalten Sie direkt im Rahmen Ihrer
+                Online-Terminbuchung über Doctolib – oder jederzeit persönlich an unserer Anmeldung.
+              </p>
+              <div className="mt-6 flex justify-center">
+                <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
               </div>
-            ))}
-            <p className="pt-2 text-center text-[13.5px] leading-relaxed text-derya-dim">
-              Diese Formulare erhalten Sie an unserer Anmeldung – die PDF-Downloads stellen wir hier in Kürze bereit.
-            </p>
+            </div>
           </AnimatedSection>
         </div>
       </section>

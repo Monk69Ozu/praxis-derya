@@ -20,11 +20,11 @@ export default function DeryaCtaBanner() {
         <div className="flex flex-col items-start justify-center gap-5 p-10 lg:p-14">
           <h2 className="text-3xl font-semibold leading-snug sm:text-4xl">Vereinbaren Sie Ihren Termin</h2>
           <p className="max-w-md text-[15px] leading-relaxed">
-            Telefonisch unter{" "}
+            Bequem online über Doctolib oder telefonisch unter{" "}
             <a href={praxis.telefonHref} className="font-semibold text-derya-ink hover:text-derya-primary">{praxis.telefon}</a>{" "}
-            oder bequem über unser Kontaktformular – wir sind für Sie und Ihre Familie da.
+            – wir sind für Sie und Ihre Familie da.
           </p>
-          <DeryaButton href="/contact">Termin vereinbaren</DeryaButton>
+          <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
         </div>
       </AnimatedSection>
     </section>

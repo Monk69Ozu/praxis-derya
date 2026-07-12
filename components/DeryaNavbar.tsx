@@ -56,7 +56,7 @@ export default function DeryaNavbar() {
             </svg>
             {praxis.telefon}
           </a>
-          <DeryaButton href="/contact">Termin vereinbaren</DeryaButton>
+          <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
         </div>
 
         {/* Mobile: Hamburger */}
@@ -104,7 +104,7 @@ export default function DeryaNavbar() {
             <a href={praxis.telefonHref} className="text-center text-[15px] font-semibold text-derya-ink">
               Telefon: {praxis.telefon}
             </a>
-            <DeryaButton href="/contact" className="w-full">Termin vereinbaren</DeryaButton>
+            <DeryaButton href={praxis.doctolib} className="w-full">Termin online buchen</DeryaButton>
           </div>
         </div>
       )}

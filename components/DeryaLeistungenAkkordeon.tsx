@@ -26,7 +26,7 @@ const leistungen = [
   {
     titel: "Alternative Medizin",
     text: "Bewährte alternative Behandlungsmethoden wie Schröpfen, Eigenblut- und Ozontherapie ergänzen bei uns die Schulmedizin und aktivieren Ihre körpereigenen Heilkräfte – etwa bei Verspannungen, Durchblutungsstörungen und Immunschwäche.",
-    bild: "/images/derya-aesthetik-neu.png",
+    bild: "/images/derya-hautuntersuchung.png",
   },
 ]
 

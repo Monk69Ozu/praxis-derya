@@ -1,6 +1,7 @@
 import Image from "next/image"
 import DeryaButton from "@/components/DeryaButton"
 import AnimatedHeading from "@/components/AnimatedHeading"
+import { praxis } from "@/lib/derya-daten"
 
 interface Props {
   title: string
@@ -31,7 +32,7 @@ export default function DeryaPageHero({ title, text, image, center = false }: Pr
         </AnimatedHeading>
         <p className={`mt-6 max-w-xl text-[17px] leading-relaxed text-white/90 ${center ? "mx-auto" : ""}`}>{text}</p>
         <div className="mt-8">
-          <DeryaButton href="/contact" variant="light">Termin vereinbaren</DeryaButton>
+          <DeryaButton href={praxis.doctolib} variant="light">Termin online buchen</DeryaButton>
         </div>
       </div>
     </section>

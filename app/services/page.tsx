@@ -2,11 +2,12 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import AnimatedSection from "@/components/AnimatedSection"
 import DeryaPageHero from "@/components/DeryaPageHero"
+import Derya3dElement from "@/components/Derya3dElement"
 
 export const metadata: Metadata = {
   title: "Leistungen – Praxis Derya, Allgemeinmedizin in Köln",
   description:
-    "Hausärztliche Versorgung, Impfungen, Laboruntersuchungen, IGeL-Leistungen, alternative und ästhetische Medizin – das Leistungsspektrum der Praxis Derya in Köln.",
+    "Hausärztliche Versorgung, Impfungen, Laboruntersuchungen, IGeL-Leistungen und alternative Medizin – das Leistungsspektrum der Praxis Derya in Köln.",
 }
 
 function Badge({ children }: { children: string }) {
@@ -46,7 +47,7 @@ const allgemeineLeistungen = [
     titel: "Prävention",
     punkte: [
       "Gesundheits-Check",
-      "Hautkrebsvorsorge ab dem 35. Lebensjahr",
+      "Hautkrebsscreening ab dem 35. Lebensjahr",
       "Krebsvorsorge bei Männern ab dem 45. Lebensjahr",
       "Impfungen und Impfberatung (gemäß STIKO)",
       "Vorsorgeuntersuchungen bei Kindern & Jugendlichen",
@@ -59,6 +60,7 @@ const allgemeineLeistungen = [
     titel: "Therapie",
     punkte: [
       "Psychosomatische Grundversorgung",
+      "Suchtmedizin",
       "Infusionstherapie",
       "Disease-Management-Programm (DMP):",
       "Diabetes Typ I und II",
@@ -96,7 +98,7 @@ const igel = [
   "PSA (Vorsorgeuntersuchung Prostatakarzinom)",
   "Vitaminsubstitution-Therapie als Injektion oder Infusion",
   "Spezielle Darmkrebsvorsorge im Stuhl (Tumor-M2-PK-Test)",
-  "Reisemedizinische Beratung und -Impfungen",
+  "Reiseimpfberatung, reisemedizinische Beratung und Reiseimpfungen",
   "Sportmedizinische Untersuchungen (Ergometrie, Lungenfunktionsprüfung etc.)",
   "Tauchtauglichkeitsbescheinigung",
   "Laborchemische Vitaminbestimmungen & Applikation",
@@ -126,13 +128,6 @@ const alternativeMedizin = [
   },
 ]
 
-const aesthetik = [
-  { titel: "Faltenbehandlung mit Botox", punkte: ["Glättung von Stirn-, Zornes- und Lachfalten", "Wirkung hält 4–9 Monate an"] },
-  { titel: "Faltenunterspritzung mit Hyaluron-Filler", punkte: ["Reduzierung feiner bis tiefer Falten", "Behandlung von Nasolabial-, Mundwinkel- und Zornesfalten"] },
-  { titel: "Unterspritzung feiner Falten mittels Mesotherapie", punkte: ["Verfeinert Falten und regeneriert die Haut", "Auffrischung des Gesichts, 6–10 Behandlungen erforderlich"] },
-  { titel: "Facelifting mit Faden", punkte: ["Natürliche Straffung des Gesichts ohne OP", "Stabilisierung erschlafften Gewebes", "Geeignet für Gesicht, Hals und Dekolleté"] },
-]
-
 export default function Services() {
   return (
     <>
@@ -144,13 +139,14 @@ export default function Services() {
 
       {/* Impfungen */}
       <section id="impfungen" className="bg-derya-bg-light py-20">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="relative mx-auto max-w-6xl px-6">
+          <Derya3dElement bild="/images/3d/derya-3d-impfung.png" breite={150} className="absolute -top-4 right-6 hidden lg:block" />
           <Badge>Kassenleistungen</Badge>
           <AnimatedSection className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:items-start">
             <h2 className="text-4xl sm:text-[40px]">Impfungen</h2>
-            <p className="text-[15px] leading-relaxed">
-              Die Ständige Impfkommission (STIKO) empfiehlt in Deutschland verschiedene Schutzimpfungen für
-              Erwachsene:
+            <p className="text-[15px] leading-relaxed lg:pr-48">
+              Wir führen alle Pflichtimpfungen sowie die von der Ständigen Impfkommission (STIKO) empfohlenen
+              Schutzimpfungen durch – unter anderem:
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
@@ -167,7 +163,8 @@ export default function Services() {
               </CheckItem>
               <CheckItem>
                 Öffentlich empfohlene Schutzimpfungen werden von den gesetzlichen Krankenkassen übernommen. Zusätzlich
-                beraten wir Sie zu Impfungen für Auslandsreisen im Rahmen unserer reisemedizinischen Beratung.
+                bieten wir Reiseimpfberatung und Reiseimpfungen für Ihre Auslandsreise als individuelle
+                Gesundheitsleistung (IGeL) an.
               </CheckItem>
             </div>
           </AnimatedSection>
@@ -202,8 +199,11 @@ export default function Services() {
                 angeschlossen, in dem alle modernen Laboruntersuchungen durchgeführt werden können.
               </p>
             </div>
-            <div className="relative h-full min-h-[320px] overflow-hidden rounded-2xl">
-              <Image src="/images/derya-labor.webp" alt="Laborproben zur Analyse" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+            <div className="relative h-full">
+              <div className="relative h-full min-h-[320px] overflow-hidden rounded-2xl">
+                <Image src="/images/derya-labor.webp" alt="Laborproben zur Analyse" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+              </div>
+              <Derya3dElement bild="/images/3d/derya-3d-mikroskop.png" breite={150} className="absolute -right-4 -top-12 z-10 hidden lg:block" delay={1.5} />
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.15}>
@@ -285,40 +285,6 @@ export default function Services() {
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Ästhetische Medizin */}
-      <section id="aesthetische-medizin" className="bg-white py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <Badge>Ästhetische Medizin</Badge>
-          <AnimatedSection className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:items-start">
-            <h2 className="text-4xl sm:text-[40px]">Ästhetische Medizin</h2>
-            <p className="text-[15px] leading-relaxed">
-              Ergänzend zur Allgemeinmedizin bieten wir ausgewählte ästhetische Behandlungen an, die Ihr Wohlbefinden
-              steigern. Wir beraten Sie individuell zu den passenden Behandlungsmethoden.
-            </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.1} className="mt-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
-            <div className="relative h-full min-h-[360px] overflow-hidden rounded-2xl">
-              <Image src="/images/derya-aesthetik-neu.png" alt="Medizinische Hautuntersuchung in der Praxis Derya" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
-            </div>
-            <div className="flex flex-col gap-5">
-              {aesthetik.map((a) => (
-                <div key={a.titel} className="rounded-xl bg-derya-card p-7">
-                  <h3 className="text-[18px] font-semibold text-derya-ink">{a.titel}</h3>
-                  <ul className="mt-3 space-y-2">
-                    {a.punkte.map((p) => (
-                      <li key={p} className="flex items-start gap-2.5 text-[14px] leading-relaxed">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-derya-primary" aria-hidden="true" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
         </div>
       </section>
 

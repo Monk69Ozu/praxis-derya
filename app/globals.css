@@ -32,6 +32,22 @@
   --font-serif: var(--font-lora), serif;
 }
 
+/* Schwebe-Animation für die freigestellten 3D-Elemente */
+@keyframes derya-schweben {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.derya-schwebt {
+  animation: derya-schweben 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .derya-schwebt {
+    animation: none;
+  }
+}
+
 @layer base {
   body {
     background: #ffffff;

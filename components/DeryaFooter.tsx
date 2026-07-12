@@ -22,21 +22,24 @@ export default function DeryaFooter() {
             <p>
               <a href={`mailto:${praxis.email}`} className="hover:text-white hover:underline">{praxis.email}</a>
             </p>
+            <p>
+              <a href={praxis.doctolib} target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:underline">
+                Termin online buchen (Doctolib)
+              </a>
+            </p>
           </address>
         </div>
 
         {/* Sprechzeiten */}
         <div>
           <p className="text-[15px] font-bold">Sprechzeiten</p>
-          <dl className="mt-5 space-y-2 text-[14px] text-white/85">
-            <div className="flex justify-between gap-4">
-              <dt>Mo – Fr</dt>
-              <dd>9:00 – 12:00 Uhr</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt>Mo, Di, Do</dt>
-              <dd>15:00 – 18:00 Uhr</dd>
-            </div>
+          <dl className="mt-5 space-y-3 text-[14px] text-white/85">
+            {praxis.oeffnungszeiten.map((z) => (
+              <div key={z.tage}>
+                <dt className="font-semibold">{z.tage}</dt>
+                <dd className="text-white/70">{z.zeiten}</dd>
+              </div>
+            ))}
             <p className="pt-1 text-[13px] text-white/60">und nach Vereinbarung</p>
           </dl>
           <p className="mt-5 text-[13px] leading-relaxed text-white/60">

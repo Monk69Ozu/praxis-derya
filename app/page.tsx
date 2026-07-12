@@ -5,6 +5,7 @@ import AnimatedHeading from "@/components/AnimatedHeading"
 import DeryaButton from "@/components/DeryaButton"
 import DeryaLeistungenAkkordeon from "@/components/DeryaLeistungenAkkordeon"
 import DeryaKontaktKarten from "@/components/DeryaKontaktKarten"
+import Derya3dElement from "@/components/Derya3dElement"
 import { praxis } from "@/lib/derya-daten"
 
 const iconCls = "flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-derya-bg-soft text-derya-primary"
@@ -32,7 +33,7 @@ const fakten = [
   },
   {
     titel: "Impfungen & Reisemedizin",
-    text: "Alle STIKO-Impfungen sowie reisemedizinische Beratung für Ihren Auslandsaufenthalt.",
+    text: "Alle Pflicht- und STIKO-Impfungen sowie Reiseimpfberatung als IGeL-Leistung.",
     icon: <path d="m18 2 4 4-9.5 9.5-4-4L18 2ZM8 12l-5.5 5.5a2.1 2.1 0 0 0 3 3L11 15" />,
   },
   {
@@ -62,7 +63,7 @@ export default function Home() {
                 dem neuesten Stand der Medizin.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-5">
-                <DeryaButton href="/contact">Termin vereinbaren</DeryaButton>
+                <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
                 <Link
                   href="/services"
                   className="group flex items-center gap-2 text-[15px] font-semibold text-derya-ink transition-colors hover:text-derya-primary"
@@ -86,6 +87,7 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
+              <Derya3dElement bild="/images/3d/derya-3d-stethoskop.png" breite={150} className="absolute -left-12 bottom-14 z-10 hidden lg:block" />
             </div>
           </div>
 
@@ -94,7 +96,9 @@ export default function Home() {
             <div className="px-7 py-6">
               <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-derya-dim">Sprechzeiten</p>
               <p className="mt-2 text-[14.5px] leading-relaxed text-derya-ink">
-                Mo – Fr: 9:00 – 12:00 Uhr<br />Mo, Di, Do: 15:00 – 18:00 Uhr
+                {praxis.oeffnungszeiten.map((z) => (
+                  <span key={z.tage} className="block">{z.tage}: {z.zeiten}</span>
+                ))}
               </p>
             </div>
             <div className="px-7 py-6">
@@ -102,7 +106,9 @@ export default function Home() {
               <p className="mt-2 text-[14.5px] leading-relaxed text-derya-ink">
                 <a href={praxis.telefonHref} className="font-semibold hover:text-derya-primary">{praxis.telefon}</a>
                 <br />
-                <a href={`mailto:${praxis.email}`} className="hover:text-derya-primary">{praxis.email}</a>
+                <a href={praxis.doctolib} target="_blank" rel="noopener noreferrer" className="font-semibold text-derya-primary hover:underline">
+                  Online-Termin über Doctolib
+                </a>
               </p>
             </div>
             <div className="px-7 py-6">
@@ -185,7 +191,10 @@ export default function Home() {
       </section>
 
       {/* Sprechzeiten + Notfall */}
-      <section className="bg-derya-bg-light py-24">
+      <section className="relative bg-derya-bg-light py-24">
+        <div className="relative mx-auto max-w-6xl px-6">
+          <Derya3dElement bild="/images/3d/derya-3d-herz.png" breite={150} className="absolute -top-8 right-6 hidden lg:block" />
+        </div>
         <AnimatedSection className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-4xl sm:text-[44px]">Sprechzeiten &amp; Notfall</h2>
         </AnimatedSection>
@@ -193,14 +202,12 @@ export default function Home() {
           <AnimatedSection className="rounded-2xl bg-white p-8 shadow-[0_6px_24px_rgba(22,23,32,0.05)]">
             <h3 className="text-[20px] font-semibold text-derya-ink">Sprechzeiten</h3>
             <dl className="mt-5 space-y-3 text-[14.5px]">
-              <div className="flex justify-between border-b border-black/5 pb-3">
-                <dt className="font-semibold text-derya-ink">Mo – Fr</dt>
-                <dd>9:00 – 12:00 Uhr</dd>
-              </div>
-              <div className="flex justify-between border-b border-black/5 pb-3">
-                <dt className="font-semibold text-derya-ink">Mo, Di, Do</dt>
-                <dd>15:00 – 18:00 Uhr</dd>
-              </div>
+              {praxis.oeffnungszeiten.map((z) => (
+                <div key={z.tage} className="flex justify-between gap-4 border-b border-black/5 pb-3">
+                  <dt className="font-semibold text-derya-ink">{z.tage}</dt>
+                  <dd className="text-right">{z.zeiten}</dd>
+                </div>
+              ))}
               <div className="flex justify-between">
                 <dt className="font-semibold text-derya-ink">und nach Vereinbarung</dt>
                 <dd />
@@ -254,11 +261,11 @@ export default function Home() {
           <div className="flex flex-col items-start justify-center gap-5 p-10 lg:p-14">
             <h2 className="text-3xl font-semibold leading-snug sm:text-4xl">Wir sind für Sie da.</h2>
             <p className="max-w-md text-[15px] leading-relaxed">
-              Vereinbaren Sie Ihren Termin telefonisch unter{" "}
-              <a href={praxis.telefonHref} className="font-semibold text-derya-ink hover:text-derya-primary">{praxis.telefon}</a>{" "}
-              oder über unser Kontaktformular. Sie finden uns am Karolingerring 18, direkt am Chlodwigplatz.
+              Buchen Sie Ihren Termin bequem online über Doctolib oder telefonisch unter{" "}
+              <a href={praxis.telefonHref} className="font-semibold text-derya-ink hover:text-derya-primary">{praxis.telefon}</a>.
+              Sie finden uns am Karolingerring 18, direkt am Chlodwigplatz.
             </p>
-            <DeryaButton href="/contact">Termin vereinbaren</DeryaButton>
+            <DeryaButton href={praxis.doctolib}>Termin online buchen</DeryaButton>
           </div>
         </AnimatedSection>
       </section>

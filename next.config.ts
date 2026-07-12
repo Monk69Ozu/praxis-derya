@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
   ...(fuerPages && {
     output: "export" as const,
     basePath: "/praxis-derya",
-    images: { unoptimized: true },
+    images: {
+      loader: "custom" as const,
+      loaderFile: "./lib/pages-bild-loader.ts",
+    },
   }),
 };
 

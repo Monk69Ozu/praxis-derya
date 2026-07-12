@@ -53,7 +53,7 @@ export default function DeryaKontaktKarten() {
           <h3 className="mt-5 text-[17px] font-semibold text-derya-ink">Öffnungszeiten</h3>
           <p className="mt-3 text-[14.5px] leading-relaxed">
             {praxis.oeffnungszeiten.map((z) => (
-              <span key={z} className="block">{z}</span>
+              <span key={z.tage} className="block">{z.tage}: {z.zeiten}</span>
             ))}
           </p>
         </div>

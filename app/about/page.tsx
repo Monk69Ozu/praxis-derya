@@ -4,6 +4,8 @@ import AnimatedSection from "@/components/AnimatedSection"
 import DeryaPageHero from "@/components/DeryaPageHero"
 import DeryaButton from "@/components/DeryaButton"
 import DeryaKontaktKarten from "@/components/DeryaKontaktKarten"
+import Derya3dElement from "@/components/Derya3dElement"
+import { praxis } from "@/lib/derya-daten"
 
 export const metadata: Metadata = {
   title: "Über uns – Praxis Derya, Hausarztpraxis in Köln",
@@ -30,12 +32,11 @@ const praxisKarten = [
   },
 ]
 
-const team = [
-  { name: "Frau Dr. med. Gulnara Derya", rolle: "Fachärztin für Allgemeinmedizin", bild: "/images/derya-team-gulnara.png" },
-  { name: "Ärztliche Weiterbildung", rolle: "Arzt/Ärztin in Weiterbildung", bild: "/images/derya-team-platzhalter-m.png" },
-  { name: "Herr Osman Derya", rolle: "Dipl.-Ing. / Praxismanager", bild: "/images/derya-team-osman.png" },
-  { name: "Unser MFA-Team", rolle: "Anmeldung · Labor · Abrechnung", bild: "/images/derya-team-platzhalter-w.png" },
-  { name: "Unsere Auszubildenden", rolle: "Ausbildung zur/zum MFA", bild: "/images/derya-team-platzhalter-w.png" },
+/* Echte Teamfotos folgen von der Kundin — bis dahin neutrale Initialen-Platzhalter, keine erfundenen Gesichter */
+const team: { name: string; rolle: string; bild: string | null; initialen?: string }[] = [
+  { name: "Dr. med. Gulnara Derya", rolle: "Ärztin · Fachärztin für Allgemeinmedizin", bild: "/images/derya-team-gulnara.png" },
+  { name: "Sudenaz Akar", rolle: "Medizinische Fachangestellte (MFA)", bild: null, initialen: "SA" },
+  { name: "Nazli-Nur Coban", rolle: "Medizinische Fachangestellte (MFA)", bild: null, initialen: "NC" },
 ]
 
 export default function About() {
@@ -85,7 +86,7 @@ export default function About() {
               individuellen Beratung für Ihre Gesundheit. Wir sind für Sie da.“
             </p>
             <div className="mt-8">
-              <DeryaButton href="/contact" variant="light">Termin vereinbaren</DeryaButton>
+              <DeryaButton href={praxis.doctolib} variant="light">Termin online buchen</DeryaButton>
             </div>
           </div>
         </AnimatedSection>
@@ -105,7 +106,16 @@ export default function About() {
           {team.map((m, i) => (
             <AnimatedSection key={`${m.name}-${i}`} delay={(i % 3) * 0.08} className="overflow-hidden rounded-2xl bg-white shadow-[0_6px_24px_rgba(22,23,32,0.05)]">
               <div className="relative h-64 bg-gradient-to-b from-derya-bg-soft to-[#dde6f2]">
-                <Image src={m.bild} alt={m.name} fill sizes="(min-width: 1024px) 370px, 100vw" className="object-contain object-bottom pt-6" />
+                {m.bild ? (
+                  <Image src={m.bild} alt={m.name} fill sizes="(min-width: 1024px) 370px, 100vw" className="object-contain object-bottom pt-6" />
+                ) : (
+                  <div className="flex h-full flex-col items-center justify-center gap-4">
+                    <span className="flex h-24 w-24 items-center justify-center rounded-full bg-white text-[30px] font-semibold text-derya-primary shadow-[0_6px_20px_rgba(29,78,158,0.14)]">
+                      {m.initialen}
+                    </span>
+                    <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-derya-dim">Foto folgt</span>
+                  </div>
+                )}
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-[17px] font-semibold text-derya-ink">{m.name}</h3>
@@ -129,6 +139,7 @@ export default function About() {
               Studiums zu sammeln – sei es im Praktischen Jahr (PJ) oder durch weitere Ausbildungselemente wie
               Blockpraktika.
             </p>
+            <Derya3dElement bild="/images/3d/derya-3d-buch.png" breite={210} className="mx-auto mt-12 hidden lg:block" />
           </AnimatedSection>
           <div className="flex flex-col gap-5">
             <AnimatedSection className="rounded-2xl bg-white p-8 shadow-[0_6px_24px_rgba(22,23,32,0.05)]">

@@ -3,11 +3,12 @@ import Image from "next/image"
 import AnimatedSection from "@/components/AnimatedSection"
 import AnimatedHeading from "@/components/AnimatedHeading"
 import DeryaCtaBanner from "@/components/DeryaCtaBanner"
+import Derya3dElement from "@/components/Derya3dElement"
 
 export const metadata: Metadata = {
   title: "Aktuelles – Praxis Derya, Köln",
   description:
-    "Neuigkeiten aus der Praxis Derya in Köln: aktuelle Stellenangebote, Ausbildungsmöglichkeiten und Informationen zur Praxisvertretung.",
+    "Neuigkeiten aus der Praxis Derya in Köln: aktuelle Stellenangebote, Ausbildungsmöglichkeiten und wichtige Rufnummern.",
 }
 
 const stellen = [
@@ -41,14 +42,15 @@ export default function News() {
         <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 pb-20 pt-16 text-center lg:pt-24">
           <AnimatedHeading as="h1" className="text-5xl text-white sm:text-6xl">Neuigkeiten &amp; Informationen</AnimatedHeading>
           <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/90">
-            Bleiben Sie informiert über Stellenangebote, wichtige Rufnummern und Vertretungen in unserer Praxis.
+            Bleiben Sie informiert über Stellenangebote und wichtige Rufnummern unserer Praxis.
           </p>
         </div>
       </section>
 
       {/* Stellenangebote */}
       <section id="stellenangebote" className="bg-derya-bg-light py-20">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="relative mx-auto max-w-6xl px-6">
+          <Derya3dElement bild="/images/3d/derya-3d-buch.png" breite={200} className="absolute bottom-32 right-10 hidden lg:block" delay={0.5} />
           <AnimatedSection className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <h2 className="text-4xl sm:text-[40px]">Stellenangebote</h2>
             <p className="max-w-sm text-[13.5px] leading-relaxed text-derya-dim">
@@ -79,30 +81,6 @@ export default function News() {
       </section>
 
       <DeryaCtaBanner />
-
-      {/* Praxisvertretung */}
-      <section id="vertretung" className="bg-derya-bg-light py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <AnimatedSection className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <h2 className="text-4xl sm:text-[40px]">Praxisvertretung</h2>
-            <p className="max-w-sm text-[13.5px] leading-relaxed text-derya-dim">
-              Auch während Urlaub oder Krankheit sorgen wir für Ihre medizinische Betreuung durch kompetente
-              Vertretungspraxen.
-            </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.1} className="mt-10 space-y-4">
-            <div className="rounded-xl bg-white px-7 py-6 text-[14.5px] leading-relaxed shadow-[0_4px_18px_rgba(22,23,32,0.04)]">
-              Während Urlaub, Krankheit oder der Teilnahme an ärztlichen Fortbildungen lassen wir uns in der Umgebung
-              durch eine oder mehrere Hausarztpraxen vertreten, damit die medizinische Versorgung unserer Patienten
-              gewährleistet ist.
-            </div>
-            <div className="rounded-xl bg-white px-7 py-6 text-[14.5px] leading-relaxed shadow-[0_4px_18px_rgba(22,23,32,0.04)]">
-              Außerhalb der Praxisöffnungszeiten können Sie sich an die nächste Notfallpraxis wenden. Die aktuelle
-              Vertretungspraxis erfahren Sie über unsere Anrufbeantworter-Ansage oder den Aushang an der Praxistür.
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
     </>
   )
 }

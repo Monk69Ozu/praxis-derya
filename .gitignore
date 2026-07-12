@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Referenz-/Sicherungsordner (nicht veröffentlichen)
+.review/
+_unbenutzte-bilder/
+.copy/

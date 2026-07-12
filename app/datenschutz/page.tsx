@@ -24,10 +24,14 @@ export default function Datenschutz() {
           Kontaktdaten: Tel.: 0221 – 31 35 33, Fax: 0221 – 31 53 54, E-Mail: info@praxis-derya.de
         </p>
         <p>
-          Sie erreichen die/den zuständige/n Datenschutzbeauftragte/n unter:<br />
-          Name: Osman Derya<br />
+          Ansprechpartnerin für alle datenschutzrechtlichen Anliegen ist die oben genannte Verantwortliche:<br />
+          Dr. med. Gulnara Derya<br />
           Anschrift: Karolingerring 18, 50678 Köln<br />
           Kontaktdaten: Tel.: 0221 – 31 35 33, Fax: 0221 – 31 53 54, E-Mail: info@praxis-derya.de
+        </p>
+        <p>
+          Eine gesondert benannte Datenschutzbeauftragte bzw. ein gesondert benannter Datenschutzbeauftragter ist
+          für die Praxis derzeit nicht bestellt.
         </p>
       </RechtsBlock>
 
